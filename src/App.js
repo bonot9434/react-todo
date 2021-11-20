@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./index.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faChevronRight,
+	faChevronLeft,
+	faCircle,
+	faCheckCircle,
+	faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const [items, setItems] = useState([]);
+
+	return (
+		<div className="app-background">
+			<div className="main-container">
+				<div className="add-item-box">
+					<input className="add-item-input" placeholder="Add an item..." />
+					<FontAwesomeIcon icon={faPlus} />
+				</div>
+				<div className="item-list">
+					<div className="item-container"></div>
+				</div>
+				<div className="total">Total: </div>
+			</div>
+		</div>
+	);
+};
 
 export default App;
