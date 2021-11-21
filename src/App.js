@@ -12,6 +12,9 @@ import {
 const App = () => {
 	const [items, setItems] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [totalItemCount, setTotalItemCount] = useState(0);
+
+
   const handleAddButtonClick = () => {
     const newItem = {
       itemName: inputValue,
@@ -21,6 +24,7 @@ const App = () => {
     const newItems = [...items, newItem];
     setItems(newItems);
     setInputValue("");
+    calculateTotal();
   };
 
   const toggleComplete = (index) => {
@@ -33,19 +37,29 @@ const App = () => {
     const newItems = [...items];
     newItems[index].quantity++;
     setItems(newItems);
+    calculateTotal();
   };
 
   const handleQuantityDecrease = (index) => {
     const newItems = [...items];
     newItems[index].quantity--;
     setItems(newItems);
+    calculateTotal();
+  };
+
+  const calculateTotal = () => {
+    const totalItemCount = items.reduce((total, item) => {
+      return total + item.quantity;
+    },0);
+
+    setTotalItemCount(totalItemCount);
   };
 
 	return (
 		<div className="app-background">
 			<div className="main-container">
 				<div className="add-item-box">
-					<input value={inputValue} onChange={(event) => 
+					<input value={inputValue} onChange={(event) =>
           setInputValue(event.target.value)}className="add-item-input" placeholder="Add an item..." />
 					<FontAwesomeIcon icon={faPlus} onClick={() => handleAddButtonClick()} />
 				</div>
@@ -77,7 +91,7 @@ const App = () => {
             </div>
           ))}
 				</div>
-				<div className="total">Total: </div>
+				<div className="total">Total: {totalItemCount}</div>
 			</div>
 		</div>
 	);
