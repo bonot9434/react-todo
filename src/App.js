@@ -29,6 +29,18 @@ const App = () => {
     setItems(newItems);
   };
 
+  const handleQuantityIncrease = (index) => {
+    const newItems = [...items];
+    newItems[index].quantity++;
+    setItems(newItems);
+  };
+
+  const handleQuantityDecrease = (index) => {
+    const newItems = [...items];
+    newItems[index].quantity--;
+    setItems(newItems);
+  };
+
 	return (
 		<div className="app-background">
 			<div className="main-container">
@@ -55,11 +67,11 @@ const App = () => {
               </div>
               <div className="quantity">
                 <button>
-                  <FontAwesomeIcon icon={faChevronLeft} />
+                  <FontAwesomeIcon icon={faChevronLeft} onClick={() => handleQuantityDecrease(index)} />
                 </button>
                 <span>{item.quantity}</span>
                 <button>
-                  <FontAwesomeIcon icon={faChevronRight} />
+                  <FontAwesomeIcon icon={faChevronRight} onClick={() => handleQuantityIncrease(index)} />
                 </button>
               </div>
             </div>
