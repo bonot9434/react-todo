@@ -23,6 +23,12 @@ const App = () => {
     setInputValue("");
   };
 
+  const toggleComplete = (index) => {
+    const newItems = [...items];
+    newItems[index].isSelected = !newItems[index].isSelected;
+    setItems(newItems);
+  };
+
 	return (
 		<div className="app-background">
 			<div className="main-container">
@@ -34,7 +40,7 @@ const App = () => {
 				<div className="item-list">
           {items.map((item,index) => (
 					  <div className="item-container">
-              <div className="item-name">
+              <div className="item-name" onClick={() => toggleComplete(index)}>
                 {item.isSelected ?(
                   <>
                     <FontAwesomeIcon icon={faCheckCircle} />
